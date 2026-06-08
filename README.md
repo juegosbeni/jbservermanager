@@ -6,4 +6,4 @@ Solo para windows.
 
 Descarga el instalador desde aquí:
 
-https://github.com/juegosbeni/jbservermanager/releases/download/instalador/JBSM_installer.bat
+https://juegosbeni.github.io/jbservermanager/download
