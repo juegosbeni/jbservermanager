@@ -1,4 +1,4 @@
-[![pages-build-deployment](https://github.com/juegosbeni/jbservermanager/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/juegosbeni/jbservermanager/actions/workflows/pages/pages-build-deployment)
+[![pages-build-deployment](https://github.com/juegosbeni/jbservermanager/actions/workflows/pages/pages-build-deployment/badge.svg?branch=main)](https://github.com/juegosbeni/jbservermanager/actions/workflows/pages/pages-build-deployment)
 
 === JB Server Manager ===
 
