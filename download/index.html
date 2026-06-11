@@ -1,110 +1,390 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Descargar JB Server Manager</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JB Server Manager</title>
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #0f0f0f;
-      color: #eaeaea;
-      text-align: center;
-      padding: 40px;
+<style>
+:root{
+    --primary:#4de0c6;
+    --primary-dark:#2bb39d;
+    --bg:#0f172a;
+    --card:#16213e;
+    --text:#ffffff;
+    --shadow:rgba(77,224,198,.3);
+}
+
+.light{
+    --bg:#f4fffd;
+    --card:#ffffff;
+    --text:#0f172a;
+    --shadow:rgba(43,179,157,.25);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    transition:.4s;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:40px 20px;
+    text-align:center;
+}
+
+h1{
+    font-size:4rem;
+    background:linear-gradient(90deg,var(--primary),#76e7ff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.subtitle{
+    margin-top:10px;
+    font-size:1.2rem;
+    opacity:.85;
+}
+
+.download-text{
+    margin-top:40px;
+    font-size:1.2rem;
+}
+
+.download-btn{
+    margin-top:25px;
+    background:linear-gradient(135deg,var(--primary),#53b7ff);
+    color:white;
+    border:none;
+    padding:18px 40px;
+    border-radius:15px;
+    font-size:1.2rem;
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 0 25px var(--shadow);
+}
+
+.download-btn:hover{
+    transform:translateY(-4px) scale(1.03);
+}
+
+.section{
+    margin-top:80px;
+}
+
+.card{
+    background:var(--card);
+    padding:30px;
+    border-radius:20px;
+    margin-top:20px;
+    box-shadow:0 0 25px var(--shadow);
+}
+
+.features{
+    text-align:left;
+    display:inline-block;
+    line-height:2;
+    font-size:1.1rem;
+}
+
+.links{
+    line-height:2;
+}
+
+.links a{
+    color:var(--primary);
+    text-decoration:none;
+}
+
+.links a:hover{
+    text-decoration:underline;
+}
+
+footer{
+    margin-top:80px;
+    opacity:.7;
+}
+
+/* BOTÓN TEMA MODERNO */
+
+.theme-btn{
+    position:fixed;
+    top:20px;
+    left:20px;
+    width:52px;
+    height:52px;
+    border:none;
+    border-radius:14px;
+    background:var(--card);
+    color:var(--primary);
+    font-size:1.4rem;
+    font-weight:bold;
+    cursor:pointer;
+    z-index:1000;
+    transition:.3s;
+    box-shadow:0 0 20px var(--shadow);
+}
+
+.theme-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 0 30px var(--shadow);
+}
+
+.instructions{
+    position:fixed;
+    top:20px;
+    right:-500px;
+    width:360px;
+    background:var(--card);
+    padding:20px;
+    border-radius:20px;
+    box-shadow:0 0 30px var(--shadow);
+    transition:.7s;
+    z-index:1000;
+}
+
+.instructions.show{
+    right:20px;
+}
+
+.instructions h3{
+    color:var(--primary);
+    margin-bottom:10px;
+}
+
+.instructions ol{
+    padding-left:20px;
+    line-height:1.8;
+}
+
+.download-animation{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.8);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index:999;
+}
+
+.loader{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    border:10px solid rgba(255,255,255,.15);
+    border-top-color:var(--primary);
+    animation:spin 1s linear infinite;
+}
+
+.download-animation h2{
+    margin-top:25px;
+}
+
+.progress{
+    width:300px;
+    height:15px;
+    background:rgba(255,255,255,.15);
+    border-radius:20px;
+    overflow:hidden;
+    margin-top:20px;
+}
+
+.bar{
+    width:0%;
+    height:100%;
+    background:linear-gradient(90deg,var(--primary),#76e7ff);
+    transition:.2s;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+@media(max-width:600px){
+
+    h1{
+        font-size:2.5rem;
     }
 
-    .container {
-      max-width: 650px;
-      margin: auto;
-      background: #1c1c1c;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,255,150,0.2);
+    .instructions{
+        width:90%;
+        right:-100%;
     }
 
-    h1 {
-      color: #00ff99;
-      margin-bottom: 10px;
+    .instructions.show{
+        right:5%;
     }
 
-    .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 14px 22px;
-      background: #00ff99;
-      color: black;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 8px;
-      transition: 0.2s;
-    }
-
-    .btn:hover {
-      background: #00cc77;
-    }
-
-    .warning {
-      margin-top: 20px;
-      color: #ffcc00;
-      font-weight: bold;
-    }
-
-    .steps {
-      text-align: left;
-      margin-top: 25px;
-      font-size: 15px;
-      color: #ccc;
-      line-height: 1.6;
-    }
-
-    .box {
-      margin-top: 20px;
-      padding: 15px;
-      background: #111;
-      border-radius: 8px;
-    }
-  </style>
+}
+</style>
 </head>
 
 <body>
 
-  <div class="container">
+<button class="theme-btn" id="themeBtn" onclick="toggleTheme()">
+☾
+</button>
+
+<div class="instructions" id="instructions">
+    <h3>📥 Instalación</h3>
+
+    <ol>
+        <li>Haz click para instalar JB Server Manager.</li>
+        <li>Si te aparece una advertencia, dale a "Ejecutar".</li>
+        <li>Espera a que se descargue y... ¡listo! disfruta de JB Server Manager.</li>
+    </ol>
+</div>
+
+<div class="download-animation" id="downloadAnimation">
+    <div class="loader"></div>
+
+    <h2>Descargando instalador...</h2>
+
+    <div class="progress">
+        <div class="bar" id="bar"></div>
+    </div>
+</div>
+
+<div class="container">
 
     <h1>JB Server Manager</h1>
-    <p>Creador automático de servidores de Minecraft.</p>
 
-    <a class="btn"
-       href="https://github.com/juegosbeni/jbservermanager/releases/download/instalador/JBSM_installer.bat">
-       Descargar instalador
-    </a>
-
-    <p class="warning">
-      ⚠ SOLO COMPATIBLE CON WINDOWS ⚠
+    <p class="subtitle">
+        Crea y organiza servidores de Minecraft como nunca antes se ha visto!
     </p>
 
-    <div class="box">
-      <h3>📌 Cómo instalarlo</h3>
-      <div class="steps">
-        1. Haz clic en el botón de descarga<br>
-        2. Se descargará el archivo <b>JBSM_installer.bat</b><br>
-        3. Abre la carpeta de descargas<br>
-        4. Haz doble click en el archivo<br>
-        5. Si Windows muestra advertencia, pulsa "Más información" → "Ejecutar igualmente"<br>
-        6. Sigue las instrucciones del instalador
-      </div>
+    <p class="download-text">
+        Haz click en el botón de abajo para descargar el instalador:
+    </p>
+
+    <button class="download-btn" onclick="downloadInstaller()">
+        Descargar instalador
+    </button>
+
+    <div class="section">
+        <h2>JB Server Manager puede:</h2>
+
+        <div class="card">
+            <div class="features">
+                <p>1. Crear servidores de Minecraft automáticamente</p>
+                <p>2. Crear proxyes automáticamente</p>
+                <p>3. ¡Y mucho más!</p>
+            </div>
+        </div>
     </div>
 
-    <div class="box">
-      <h3>ℹ Información importante</h3>
-      <div class="steps">
-        • El instalador descarga automáticamente todos los archivos necesarios<br>
-        • No cierres la ventana durante la instalación<br>
-        • Se recomienda ejecutar como administrador<br>
-        • Requiere conexión a Internet
-      </div>
+    <div class="section">
+        <h2>Enlaces útiles</h2>
+
+        <div class="card links">
+
+            <p>
+                Source code (GitHub):
+                <a href="https://github.com/juegosbeni/jbservermanager" target="_blank">
+                    https://github.com/juegosbeni/jbservermanager
+                </a>
+            </p>
+
+            <p>
+                Copiar URL de instalador:
+                <a href="https://juegosbeni.github.io/jbservermanager/copy" target="_blank">
+                    https://juegosbeni.github.io/jbservermanager/copy
+                </a>
+            </p>
+
+        </div>
     </div>
 
-  </div>
+    <footer>
+        ©2026 - JB Studios
+    </footer>
+
+</div>
+
+<script>
+
+/* RECORDAR TEMA */
+
+const savedTheme = localStorage.getItem("theme");
+
+if(savedTheme === "light"){
+    document.body.classList.add("light");
+    document.getElementById("themeBtn").innerHTML = "☀";
+}
+
+/* CAMBIAR TEMA */
+
+function toggleTheme(){
+
+    document.body.classList.toggle("light");
+
+    const btn = document.getElementById("themeBtn");
+
+    if(document.body.classList.contains("light")){
+        btn.innerHTML = "☀";
+        localStorage.setItem("theme","light");
+    }else{
+        btn.innerHTML = "☾";
+        localStorage.setItem("theme","dark");
+    }
+
+}
+
+/* DESCARGA */
+
+function downloadInstaller(){
+
+    document.getElementById("instructions")
+        .classList.add("show");
+
+    const animation =
+        document.getElementById("downloadAnimation");
+
+    const bar =
+        document.getElementById("bar");
+
+    animation.style.display = "flex";
+
+    let progress = 0;
+
+    const interval = setInterval(() => {
+
+        progress += 4;
+        bar.style.width = progress + "%";
+
+        if(progress >= 100){
+
+            clearInterval(interval);
+
+            setTimeout(() => {
+
+                window.location.href =
+                "https://juegosbeni.github.io/jbservermanager/download/installer";
+
+                animation.style.display = "none";
+                bar.style.width = "0%";
+
+            }, 500);
+
+        }
+
+    }, 60);
+
+}
+</script>
 
 </body>
 </html>
+```
