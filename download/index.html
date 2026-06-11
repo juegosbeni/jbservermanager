@@ -7,97 +7,283 @@
 
 <style>
 :root{
-    --primary:#4de0c6;
-    --primary-dark:#2bb39d;
-    --bg:#0f172a;
-    --card:#16213e;
-    --text:#ffffff;
-    --shadow:rgba(77,224,198,.3);
-}
-
-.light{
-    --bg:#f4fffd;
-    --card:#ffffff;
-    --text:#0f172a;
-    --shadow:rgba(43,179,157,.25);
+    --primary:#41e6d1;
+    --primary2:#5ac8ff;
+    --bg:#07131a;
+    --card:rgba(255,255,255,.06);
+    --text:white;
 }
 
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
+    font-family:Segoe UI,Arial,sans-serif;
 }
 
+.links-card{
+    text-align:center;
+    margin-top:25px;        /* más pequeño */
+    padding:15px;           /* más compacto */
+    transform:scale(0.95);  /* ligeramente reducido */
+}
+
+.links-card{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    width:100%;
+    max-width:430px;   /* un poco más ancho para caber en fila */
+
+    margin:25px auto 0;
+    padding:18px 20px;
+
+    text-align:center;
+    border-radius:16px;
+}
+
+.links-row{
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    margin-top:12px;
+    flex-wrap:wrap; /* por si pantalla pequeña */
+}
+
+.link-btn{
+    display:inline-block;
+    margin:6px 6px;         /* menos separación */
+    padding:10px 14px;      /* más pequeño */
+    border-radius:12px;
+    font-size:0.85rem;
+    text-decoration:none;
+    color:white;
+    font-weight:500;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(65,230,209,.18);
+    backdrop-filter:blur(10px);
+    position:relative;
+    overflow:hidden;
+    transition:.25s ease;
+}
+
+/* brillo animado */
+.link-btn::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background:linear-gradient(120deg,transparent,rgba(65,230,209,.35),transparent);
+    transition:.5s;
+}
+
+/* hover */
+.link-btn:hover{
+    transform:translateY(-3px) scale(1.05);
+    border-color:#41e6d1;
+    box-shadow:0 0 20px rgba(65,230,209,.25);
+}
+
+.link-btn:hover::before{
+    left:100%;
+}
+
+/* click */
+.link-btn:active{
+    transform:scale(0.97);
+}
 body{
     background:var(--bg);
     color:var(--text);
-    transition:.4s;
+    overflow-x:hidden;
 }
 
+/* MATRIX */
+#matrix{
+    position:fixed;
+    inset:0;
+    z-index:-2;
+}
+
+.overlay{
+    position:fixed;
+    inset:0;
+    background:radial-gradient(circle at center, rgba(65,230,209,.15), transparent 70%);
+    z-index:-1;
+}
+
+/* CONTENEDOR */
 .container{
     max-width:1100px;
     margin:auto;
-    padding:40px 20px;
     text-align:center;
+    padding:120px 20px 60px;
 }
 
 h1{
     font-size:4rem;
-    background:linear-gradient(90deg,var(--primary),#76e7ff);
+    background:linear-gradient(90deg,var(--primary),var(--primary2));
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
+    animation:glow 3s infinite;
+}
+.card{
+  margin-top:40px;
+  padding:25px;
+  background:var(--card);
+  border-radius:20px;
+  backdrop-filter:blur(20px);
 }
 
 .subtitle{
-    margin-top:10px;
-    font-size:1.2rem;
+    font-size:1.3rem;
+    margin-top:15px;
     opacity:.85;
 }
 
-.download-text{
-    margin-top:40px;
-    font-size:1.2rem;
-}
-
+/* BOTÓN */
 .download-btn{
-    margin-top:25px;
-    background:linear-gradient(135deg,var(--primary),#53b7ff);
-    color:white;
+    margin-top:45px;
+    padding:22px 45px;
+    font-size:1.3rem;
     border:none;
-    padding:18px 40px;
-    border-radius:15px;
-    font-size:1.2rem;
+    border-radius:22px;
     cursor:pointer;
+    color:white;
+    background:linear-gradient(135deg,#23b7ff,#2de0c5);
+    box-shadow:
+        0 0 20px rgba(65,230,209,.4),
+        0 0 60px rgba(90,200,255,.15);
     transition:.3s;
-    box-shadow:0 0 25px var(--shadow);
+    position:relative;
+    overflow:hidden;
 }
 
+/* brillo animado tipo “scanner” */
+.download-btn::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-120%;
+    width:120%;
+    height:100%;
+    background:linear-gradient(120deg,transparent,rgba(255,255,255,.35),transparent);
+    transform:skewX(-20deg);
+}
+
+/* hover ultra pro */
 .download-btn:hover{
-    transform:translateY(-4px) scale(1.03);
+    transform:translateY(-5px) scale(1.06);
+    box-shadow:
+        0 0 30px rgba(65,230,209,.7),
+        0 0 90px rgba(90,200,255,.25);
 }
 
-.section{
-    margin-top:80px;
+/* animación continua */
+.download-btn{
+    animation:btnFloat 3s ease-in-out infinite;
 }
 
-.card{
-    background:var(--card);
-    padding:30px;
+/* movimiento flotante */
+@keyframes btnFloat{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-3px);}
+}
+
+/* efecto shine al hover */
+.download-btn:hover::before{
+    animation:shine 0.8s ease;
+}
+
+@keyframes shine{
+    from{left:-120%;}
+    to{left:120%;}
+}
+
+/* click feedback */
+.download-btn:active{
+    transform:scale(0.98);
+}
+
+
+/* WARNING */
+.warning{
+    margin-top:15px;
+    font-size:1rem;
+    opacity:.8;
+    color:#ffcc66;
+}
+
+/* MODAL */
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.75);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+}
+
+.modal-box{
+    width:420px;
+    background:rgba(255,255,255,.06);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.1);
     border-radius:20px;
+    padding:25px;
+    text-align:center;
+    animation:pop .3s ease;
+}
+
+@keyframes pop{
+    from{transform:scale(.8);opacity:0;}
+    to{transform:scale(1);opacity:1;}
+}
+
+/* PROGRESS */
+.progress{
+    height:18px;
+    border-radius:999px;
+    overflow:hidden;
+    background:rgba(255,255,255,.08);
     margin-top:20px;
-    box-shadow:0 0 25px var(--shadow);
 }
 
-.features{
-    text-align:left;
-    display:inline-block;
-    line-height:2;
-    font-size:1.1rem;
+.bar{
+    width:0%;
+    height:100%;
+    background:linear-gradient(90deg,#2de0c5,#5ac8ff);
+    box-shadow:0 0 25px #41e6d1;
 }
 
+#status{
+    margin-top:15px;
+    opacity:.85;
+}
+
+/* GUÍA (AHORA ENCIMA DE TODO) */
+.install-guide{
+    display:none;
+    position:fixed;
+    top:20px;
+    right:20px;
+    width:340px;
+    background:var(--card);
+    backdrop-filter:blur(18px);
+    padding:20px;
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,.08);
+    z-index:10001; /* 🔥 MÁS ALTO QUE EL MODAL */
+    animation:slideIn .8s;
+}
+
+/* LINKS */
 .links{
-    line-height:2;
+    margin-top:60px;
 }
 
 .links a{
@@ -105,156 +291,53 @@ h1{
     text-decoration:none;
 }
 
-.links a:hover{
-    text-decoration:underline;
-}
-
 footer{
+    text-align:center;
     margin-top:80px;
+    padding:30px;
     opacity:.7;
 }
 
-/* BOTÓN TEMA MODERNO */
-
-.theme-btn{
-    position:fixed;
-    top:20px;
-    left:20px;
-    width:52px;
-    height:52px;
-    border:none;
-    border-radius:14px;
-    background:var(--card);
-    color:var(--primary);
-    font-size:1.4rem;
-    font-weight:bold;
-    cursor:pointer;
-    z-index:1000;
-    transition:.3s;
-    box-shadow:0 0 20px var(--shadow);
+/* ANIMACIONES */
+@keyframes glow{
+    0%,100%{filter:drop-shadow(0 0 10px rgba(65,230,209,.5));}
+    50%{filter:drop-shadow(0 0 30px rgba(65,230,209,.9));}
 }
 
-.theme-btn:hover{
-    transform:translateY(-2px);
-    box-shadow:0 0 30px var(--shadow);
-}
-
-.instructions{
-    position:fixed;
-    top:20px;
-    right:-500px;
-    width:360px;
-    background:var(--card);
-    padding:20px;
-    border-radius:20px;
-    box-shadow:0 0 30px var(--shadow);
-    transition:.7s;
-    z-index:1000;
-}
-
-.instructions.show{
-    right:20px;
-}
-
-.instructions h3{
-    color:var(--primary);
-    margin-bottom:10px;
-}
-
-.instructions ol{
-    padding-left:20px;
-    line-height:1.8;
-}
-
-.download-animation{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.8);
-    display:none;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    z-index:999;
-}
-
-.loader{
-    width:120px;
-    height:120px;
-    border-radius:50%;
-    border:10px solid rgba(255,255,255,.15);
-    border-top-color:var(--primary);
-    animation:spin 1s linear infinite;
-}
-
-.download-animation h2{
-    margin-top:25px;
-}
-
-.progress{
-    width:300px;
-    height:15px;
-    background:rgba(255,255,255,.15);
-    border-radius:20px;
-    overflow:hidden;
-    margin-top:20px;
-}
-
-.bar{
-    width:0%;
-    height:100%;
-    background:linear-gradient(90deg,var(--primary),#76e7ff);
-    transition:.2s;
-}
-
-@keyframes spin{
-    to{
-        transform:rotate(360deg);
-    }
-}
-
-@media(max-width:600px){
-
-    h1{
-        font-size:2.5rem;
-    }
-
-    .instructions{
-        width:90%;
-        right:-100%;
-    }
-
-    .instructions.show{
-        right:5%;
-    }
-
+@keyframes slideIn{
+    from{transform:translateX(120%);opacity:0;}
+    to{transform:translateX(0);opacity:1;}
 }
 </style>
 </head>
 
 <body>
 
-<button class="theme-btn" id="themeBtn" onclick="toggleTheme()">
-☾
-</button>
+<canvas id="matrix"></canvas>
+<div class="overlay"></div>
 
-<div class="instructions" id="instructions">
-    <h3>📥 Instalación</h3>
+<!-- MODAL -->
+<div class="modal" id="modal">
+    <div class="modal-box">
+        <h2>Descargando JBSM...</h2>
 
-    <ol>
-        <li>Haz click para instalar JB Server Manager.</li>
-        <li>Si te aparece una advertencia, dale a "Ejecutar".</li>
-        <li>Espera a que se descargue y... ¡listo! disfruta de JB Server Manager.</li>
-    </ol>
+        <div class="progress">
+            <div class="bar" id="bar"></div>
+        </div>
+
+        <p id="status">Preparando descarga...</p>
+    </div>
 </div>
 
-<div class="download-animation" id="downloadAnimation">
-    <div class="loader"></div>
-
-    <h2>Descargando instalador...</h2>
-
-    <div class="progress">
-        <div class="bar" id="bar"></div>
-    </div>
+<!-- GUÍA (ENCIMA DE TODO) -->
+<div class="install-guide" id="guide">
+    <h3>Instalación</h3>
+    <br>
+    <p>1. Haz click en el archivo descargado para instalar JBSM</p>
+    <br>
+    <p>2. Si te aparece una advertencia, dale a "Ejecutar"</p>
+    <br>
+    <p>3. Espera a que se descargue y ¡listo, disfruta de JBSM!!</p>
 </div>
 
 <div class="container">
@@ -262,129 +345,142 @@ footer{
     <h1>JB Server Manager</h1>
 
     <p class="subtitle">
-        Crea y organiza servidores de Minecraft como nunca antes se ha visto!
-    </p>
-
-    <p class="download-text">
-        Haz click en el botón de abajo para descargar el instalador:
+        Crea y organiza servidores de Minecraft como nunca antes.
     </p>
 
     <button class="download-btn" onclick="downloadInstaller()">
         Descargar instalador
     </button>
 
-    <div class="section">
-        <h2>JB Server Manager puede:</h2>
-
-        <div class="card">
-            <div class="features">
-                <p>1. Crear servidores de Minecraft automáticamente</p>
-                <p>2. Crear proxyes automáticamente</p>
-                <p>3. ¡Y mucho más!</p>
-            </div>
-        </div>
+    <div class="warning">
+        ⚠ Este programa solo funciona en Windows
     </div>
+<div class="card links-card">
+    <h3>Enlaces</h3>
 
-    <div class="section">
-        <h2>Enlaces útiles</h2>
+    <div class="links-row">
+        <a class="link-btn" href="https://github.com/juegosbeni/jbservermanager" target="_blank">
+            Source Code en GitHub
+        </a>
 
-        <div class="card links">
-
-            <p>
-                Source code (GitHub):
-                <a href="https://github.com/juegosbeni/jbservermanager" target="_blank">
-                    https://github.com/juegosbeni/jbservermanager
-                </a>
-            </p>
-
-            <p>
-                Copiar URL de instalador:
-                <a href="https://juegosbeni.github.io/jbservermanager/copy" target="_blank">
-                    https://juegosbeni.github.io/jbservermanager/copy
-                </a>
-            </p>
-
-        </div>
+        <a class="link-btn" href="https://juegosbeni.github.io/jbservermanager/copy" target="_blank">
+            Copiar URL instalador
+        </a>
     </div>
+</div>
 
-    <footer>
-        ©2026 - JB Studios
-    </footer>
+    <footer>© 2026 - JB Studios</footer>
 
 </div>
 
 <script>
 
-/* RECORDAR TEMA */
-
-const savedTheme = localStorage.getItem("theme");
-
-if(savedTheme === "light"){
-    document.body.classList.add("light");
-    document.getElementById("themeBtn").innerHTML = "☀";
-}
-
-/* CAMBIAR TEMA */
-
-function toggleTheme(){
-
-    document.body.classList.toggle("light");
-
-    const btn = document.getElementById("themeBtn");
-
-    if(document.body.classList.contains("light")){
-        btn.innerHTML = "☀";
-        localStorage.setItem("theme","light");
-    }else{
-        btn.innerHTML = "☾";
-        localStorage.setItem("theme","dark");
-    }
-
-}
-
-/* DESCARGA */
-
+// DESCARGA
 function downloadInstaller(){
 
-    document.getElementById("instructions")
-        .classList.add("show");
+    const modal=document.getElementById("modal");
+    const bar=document.getElementById("bar");
+    const status=document.getElementById("status");
+    const guide=document.getElementById("guide");
 
-    const animation =
-        document.getElementById("downloadAnimation");
+    modal.style.display="flex";
 
-    const bar =
-        document.getElementById("bar");
+    let p=0;
+    let downloaded=false;
+    let guideShown=false;
 
-    animation.style.display = "flex";
+    const interval=setInterval(()=>{
 
-    let progress = 0;
+        p += Math.random()*2.6;
 
-    const interval = setInterval(() => {
+        bar.style.width=p+"%";
 
-        progress += 4;
-        bar.style.width = progress + "%";
+        if(p < 30) status.textContent="Preparando para descargar...";
+        else if(p < 60) status.textContent="Esperando respuesta de servidor...";
+        else if(p < 75) status.textContent="Iniciando descarga...";
+        else status.textContent="Finalizando descarga...";
 
-        if(progress >= 100){
+        // 👉 75%: descarga + mostrar guía encima de TODO
+        if(p >= 75 && !downloaded){
 
-            clearInterval(interval);
+            downloaded=true;
 
-            setTimeout(() => {
+            if(!guideShown){
+                guideShown=true;
+                guide.style.display="block";
+            }
 
-                window.location.href =
-                "https://juegosbeni.github.io/jbservermanager/download/installer";
-
-                animation.style.display = "none";
-                bar.style.width = "0%";
-
-            }, 500);
-
+            const a=document.createElement("a");
+            a.href="https://github.com/juegosbeni/jbservermanager/releases/download/instalador/JBSM_installer.bat";
+            a.download="";
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
         }
 
-    }, 60);
+        if(p >= 100){
+            clearInterval(interval);
 
+            status.textContent="¡Completado!";
+
+            setTimeout(()=>{
+
+                modal.style.opacity="0";
+                modal.style.transition=".4s";
+
+                setTimeout(()=>{
+                    modal.style.display="none";
+                    modal.style.opacity="1";
+                },400);
+
+            },600);
+        }
+
+    },40);
 }
+
+
+// MATRIX
+const canvas=document.getElementById("matrix");
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+const cols=Math.floor(canvas.width/20);
+const drops=[];
+
+for(let i=0;i<cols;i++){
+    drops[i]=Math.random()*canvas.height;
+}
+
+function draw(){
+
+    ctx.fillStyle="rgba(7,19,26,0.08)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    ctx.fillStyle="#41e6d1";
+    ctx.font="16px monospace";
+
+    for(let i=0;i<drops.length;i++){
+        ctx.fillText("|", i*20, drops[i]);
+
+        if(drops[i] > canvas.height && Math.random() > 0.975){
+            drops[i]=0;
+        }
+
+        drops[i]+=8;
+    }
+}
+
+setInterval(draw,30);
+
+window.addEventListener("resize",()=>{
+    canvas.width=window.innerWidth;
+    canvas.height=window.innerHeight;
+});
+
 </script>
 
 </body>
 </html>
-```
