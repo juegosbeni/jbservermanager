@@ -336,11 +336,13 @@ footer{
 <div class="install-guide" id="guide">
     <h3>Instalación</h3>
     <br>
-    <p>1. Haz click en el archivo descargado para instalar JBSM</p>
+    <p>1. Haz click en JBSM_installer.exe para instalar JBSM</p>
     <br>
-    <p>2. Si te aparece una advertencia, dale a "Ejecutar"</p>
+    <p>2. Si tu antivirus lo analiza, espera a que termine.</p>
     <br>
-    <p>3. Espera a que se descargue y ¡listo, disfruta de JBSM!!</p>
+    <p>3. Tu antivirus te dirá que es seguro y JBSM empezará a instalarse</p>
+    <br>
+    <p>4. Espera a que se instale y ¡listo, disfruta de JBSM!!</p>
 </div>
 
 <div class="container">
@@ -414,7 +416,7 @@ function downloadInstaller(){
             }
 
             const a=document.createElement("a");
-            a.href="https://github.com/juegosbeni/jbservermanager/releases/download/instalador/JBSM_installer.bat";
+            a.href="https://github.com/juegosbeni/jbservermanager/releases/download/instalador/JBSM_installer.exe";
             a.download="";
             document.body.appendChild(a);
             a.click();
