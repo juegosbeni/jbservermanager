@@ -1,0 +1,7 @@
+-- v0.0.10 Concept --
+- Todavía en desarrollo (versión no pública)
+- Por ahora se está trabajando en la Interfaz gráfica, no existe funcionalidad.
+
+-- v0.0.9 Pre-Alpha --
+- Esta versión no tiene una interfaz gráfica, la cual se implementará en la v0.0.10
+- Creación de servidores PaperMC completa.
