@@ -1,11 +1,29 @@
--- v0.0.10 Concept -- Todavía en desarrollo (versión no pública)
+[ [ -- v0.0.10 Concept -- ] ] Todavía en desarrollo (versión no pública)
+
 - Por ahora se está trabajando en la Interfaz gráfica, no existe funcionalidad.
-[ Menú Principal ]
+
+  [ Menú Principal ]
+
 - Menú principal creado, con un contador (inútil por ahora) de servidores existentes y un directorio que puedes abrir en el explorador.
 - El Menú principal ahora tiene una zona de novedades donde se muestra este changelog.
-[ Crear Servidor ]
-- ahora existe este apartado jajjaj
 
--- v0.0.9 Pre-Alpha --
+  [ Crear Servidor ]
+
+- Apartado de Crear Servidor ya disponible con varias opciones, para crear servidores agusto.
+- Viene con una consola integrada y una barra de progreso.
+
+  [ Servidores ]
+
+- Este apartado es básicamente inútil. No carga ni la página, próximamente una lista to chula con los servidores que has creado.
+
+  [ Configuración ]
+
+- Apartado de configuración creado y funcionando.
+- La configuración se guarda en config.json.
+- Todavía la configuración no se usa pero pronto funcionará.
+
+¡¡Esta versión pronto estará disponible y recibirá más actualizaciones!!
+
+[ [ -- v0.0.9 Pre-Alpha -- ] ]
 - Esta versión no tiene una interfaz gráfica, la cual se implementará en la v0.0.10
 - Creación de servidores PaperMC completa.
