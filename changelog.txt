@@ -1,6 +1,10 @@
--- v0.0.10 Concept --
-- Todavía en desarrollo (versión no pública)
+-- v0.0.10 Concept -- Todavía en desarrollo (versión no pública)
 - Por ahora se está trabajando en la Interfaz gráfica, no existe funcionalidad.
+[ Menú Principal ]
+- Menú principal creado, con un contador (inútil por ahora) de servidores existentes y un directorio que puedes abrir en el explorador.
+- El Menú principal ahora tiene una zona de novedades donde se muestra este changelog.
+[ Crear Servidor ]
+- ahora existe este apartado jajjaj
 
 -- v0.0.9 Pre-Alpha --
 - Esta versión no tiene una interfaz gráfica, la cual se implementará en la v0.0.10
